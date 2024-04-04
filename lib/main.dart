@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // import 'package:flutterproject/loginView.dart';
 
-import 'login.dart';
+import 'welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: loginView(),
+      home: welcomeScreen(),
     );
   }
 }
