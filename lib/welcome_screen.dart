@@ -1,9 +1,8 @@
-//import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key); // corrected constructor
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,29 +12,50 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "PALESTINE",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 50,
-                height: 0.8,
+            const Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "NECTAR",
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontFamily: "Helvetica",
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 50,
+                      height: 0.8,
+                    ),
+                  ),
+                  const Text(
+                    "Online shopping mart",
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ),
-            const Text(
-              "FREE PALESTINE FREE GAZA",
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
+            Padding(
+              padding:
+                  const EdgeInsets.only(bottom: 20.0), // Add padding to bottom
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(
+                    327,
+                    50,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()),
+                  );
+                },
+                child: Text("let's begin"),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
-                );
-              },
-              child: Text("lets go"),
             ),
           ],
         ),
