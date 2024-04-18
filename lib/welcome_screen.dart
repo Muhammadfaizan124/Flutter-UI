@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google/login_screen.dart';
+
+import 'menu_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -51,7 +52,7 @@ class WelcomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const LoginScreen()),
+                        builder: (context) => const MenuScreen()),
                   );
                 },
                 child: Text("let's begin"),
