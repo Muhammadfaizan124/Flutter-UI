@@ -1,96 +1,95 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+//import 'package:google_fonts/google_fonts.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
 
   @override
-  State<MenuScreen> createState() => _LoginScreenState();
+  State<MenuScreen> createState() => _MenuScreenState();
 }
 
-class _LoginScreenState extends State<MenuScreen> {
+class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.grey,
-        title: Text("Menu screen"),
-      ),
-      //card
-      body: Center(
-        child: Container(
-          width: 200,
-          height: 250,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 3,
-                blurRadius: 10,
-                offset: Offset(0, 3),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 30,
+          ),
+          child: ListView(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 80),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Text(
+                    "Welcome to our store",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 20,
+                ),
+                width: MediaQuery.of(context).size.width,
+                height: 80,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Search store",
+                    prefixIcon: Icon(
+                      Icons.search,
+                      size: 30,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    "assets/images/burger.jpg",
-                    height: 110,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                //Product title
-                const Text(
-                  "Beef cheese burger",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Text(
-                  "1 Burger with fries and 500ML soft drink.",
-                  style: TextStyle(
-                    fontSize: 13,
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "\$30",
-                      style: TextStyle(
-                        fontSize: 17,
-                        color: Colors.red,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 35,
-                      width: 35,
-                      child: FittedBox(
-                        child: FloatingActionButton(
-                          onPressed: null,
-                          child: Icon(Icons.add),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
         ),
       ),
+      bottomNavigationBar: BottomNavbar(),
+    );
+  }
+}
+
+class BottomNavbar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      fixedColor: Colors.green[100],
+      currentIndex: 0,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.store_sharp),
+          label: "shop",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.manage_search_outlined),
+          label: "explore",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.shopping_cart),
+          label: "cart",
+        ),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border_outlined), label: "favorite"),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: "account"),
+      ],
     );
   }
 }
