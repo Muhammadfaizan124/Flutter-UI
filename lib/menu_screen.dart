@@ -77,12 +77,23 @@ class _MenuScreenState extends State<MenuScreen> {
 }
 
 //class for bottom navigation bar
-class BottomNavbar extends StatelessWidget {
+class BottomNavbar extends StatefulWidget {
+  @override
+  State<BottomNavbar> createState() => _BottomNavbarState();
+}
+
+class _BottomNavbarState extends State<BottomNavbar> {
+  int myindex = 0;
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      fixedColor: Colors.green[100],
-      currentIndex: 0,
+      onTap: (index) {
+        setState(() {
+          myindex = index;
+        });
+      },
+      currentIndex: myindex,
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.store_sharp),
@@ -96,9 +107,9 @@ class BottomNavbar extends StatelessWidget {
           icon: Icon(Icons.shopping_cart),
           label: "cart",
         ),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border_outlined), label: "favorite"),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: "account"),
+        // BottomNavigationBarItem(
+        //     icon: Icon(Icons.favorite_border_outlined), label: "favorite"),
+        // BottomNavigationBarItem(icon: Icon(Icons.person), label: "account"),
       ],
     );
   }
