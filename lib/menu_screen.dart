@@ -47,7 +47,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: "Search store",
                     prefixIcon: Icon(
@@ -58,6 +58,15 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                 ),
               ),
+              // Displaying multiple instances of Customcards
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: 6, // Change this to the number of instances you want
+                itemBuilder: (context, index) {
+                  return Customcards();
+                },
+              ),
             ],
           ),
         ),
@@ -67,6 +76,7 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 }
 
+//class for bottom navigation bar
 class BottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -89,6 +99,66 @@ class BottomNavbar extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border_outlined), label: "favorite"),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: "account"),
+      ],
+    );
+  }
+}
+
+//class for cards
+class Customcards extends StatelessWidget {
+  final List img = [
+    "apple",
+    "banana",
+    "beef",
+    "chicken",
+    "mango",
+    "strawbery",
+  ];
+
+  Customcards({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 2,
+      shrinkWrap: true,
+      childAspectRatio: (150 / 195),
+      physics: NeverScrollableScrollPhysics(),
+      children: [
+        for (int i = 0; i < img.length; i++)
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 13),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20), color: Colors.grey),
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: Image.asset(
+                    "images/${img[i]}.jpeg",
+                    height: 90,
+                    width: 90,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      img[i],
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
       ],
     );
   }
